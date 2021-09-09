@@ -76,7 +76,7 @@ const Home = () => {
           (tMountain.amount ? `${tMountain.amount.toLocaleString("ko-KR")}톤` : `미등록`) +
           "   </p>",
         "   <p>처리 여부 : " + (tMountain.finish ? "완료" : "미완료") + "</p>",
-        // "   <p>(처리를 지지합니다! 기능 준비중...)</p>",
+        // "   <p>(처리를 지지합니다 기다려주세요...)</p>",
         '   <div style="margin:20px 0 5px 0">',
         `     <a href="/tmountain/${tMountain.id}" style="border:none;padding:10px 20px;border-radius:5px;background-color:#c8d6e5;font-weight:600;">자세히</a>`,
         "   </div>",

@@ -1,8 +1,12 @@
 import { useReactiveVar } from "@apollo/client"
+import { faCompass, faHome } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { isLoggedInVar } from "../apollo"
 import useUser from "../hooks/useUser"
+import routes from "../routes"
+import Avatar from "./Avatar"
 import { Logo } from "./Icons"
 
 const SHeader = styled.header`
@@ -43,20 +47,35 @@ const Column = styled.div`
     font-weight: 900;
   }
 `
+const Icon = styled.span`
+  margin-left: 15px;
+`
+
+const IconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const Button = styled.span`
+  background-color: ${(props) => props.theme.accent};
+  border-radius: 4px;
+  padding: 4px 15px;
+  color: white;
+  font-weight: 600;
+`
 
 function Header() {
-  // const isLoggedIn = useReactiveVar(isLoggedInVar)
-  // const { data } = useUser()
+  const isLoggedIn = useReactiveVar(isLoggedInVar)
+  const { data } = useUser()
   return (
     <SHeader>
       <Wrapper>
         <MarkLink to="/">
           <Logo />
-          {/* <img src="logo.png" /> */}
           <span>K-트래쉬맵</span>
         </MarkLink>
         <Column>
-          {/* {isLoggedIn ? (
+          {isLoggedIn ? (
             <IconsContainer>
               <Icon>
                 <Link to={routes.home}>
@@ -73,10 +92,10 @@ function Header() {
               </Icon>
             </IconsContainer>
           ) : (
-            <Link to={routes.home}>
-              <Button>Login</Button>
+            <Link to={routes.login}>
+              <Button>로그인</Button>
             </Link>
-          )} */}
+          )}
         </Column>
       </Wrapper>
     </SHeader>

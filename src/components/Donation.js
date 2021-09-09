@@ -65,9 +65,12 @@ const Title = styled.p`
   font-weight: 600;
   margin-bottom: 10px;
 `
+const RedP = styled.p`
+  color: ${(props) => props.theme.lightRed};
+`
 
 const popWidth = 320
-const popHeight = 160
+const popHeight = 200
 const popTop = window.innerHeight / 2 - popWidth / 2 + 45
 const popLeft = window.innerWidth / 2 - popWidth / 2
 const DonationURL = "https://toon.at/donate/637659719549166046"
@@ -86,7 +89,10 @@ function Donation() {
           <PopupClose onClick={() => closeDonation()} custom={true} />
           <Title>K-트래쉬맵 후원하기</Title>
           <p>지원해주신 후원금은 소중히 사용하겠습니다</p>
-          <p>(팀 간식, 사이트 유지, 마케팅 등)</p>
+          <RedP>
+            (금액 충전 후 후원하기를 다시 한번 눌러주셔야 됩니다. 이것 때문에 충전만 하고 후원되지
+            않는 경우가 다수 발생하고 있습니다.)
+          </RedP>
           <DonationA href={DonationURL} target="_blank">
             <FontAwesomeIcon icon={faCoffee} size="lg" />
             <span>커피 한 잔 선물하기</span>
