@@ -9,9 +9,7 @@ import "reactjs-popup/dist/index.css"
 const InforGrid = styled.div`
   display: grid;
   grid-auto-rows: 80px;
-
   gap: 20px 50px;
-  margin-top: 50px;
   width: 100%;
 
   @media screen and (max-width: 600px) {

@@ -75,7 +75,7 @@ function Header() {
           <span>K-트래쉬맵</span>
         </MarkLink>
         <Column>
-          {isLoggedIn ? (
+          {/* {isLoggedIn ? (
             <IconsContainer>
               <Icon>
                 <Link to={routes.home}>
@@ -95,7 +95,7 @@ function Header() {
             <Link to={routes.login}>
               <Button>로그인</Button>
             </Link>
-          )}
+          )} */}
         </Column>
       </Wrapper>
     </SHeader>

@@ -42,16 +42,6 @@ function App() {
                   <Test />
                 </Layout>
               </Route>
-              <Route path={routes.login}>
-                <Layout>
-                  <Login />
-                </Layout>
-              </Route>
-              <Route path={routes.signUp}>
-                <Layout>
-                  <SingUp />
-                </Layout>
-              </Route>
               <Route>
                 <Redirect to={routes.home} />
               </Route>

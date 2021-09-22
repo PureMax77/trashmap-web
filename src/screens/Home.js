@@ -70,7 +70,9 @@ const Home = () => {
       var contentString = [
         '<div style="width:250px;display:flex;align-items:center;flex-direction:column;padding:15px;line-height:150%;border:none;">',
         '   <div style="margin-bottom:10px;max-width:220px;">',
-        tMountain.image ? `<img src="${tMountain.image}" height="150" alt="쓰레기 지도" />` : null,
+        tMountain.image
+          ? `<img src="${tMountain.image}" height="150" style="max-width:220px;" alt="쓰레기 지도" />`
+          : null,
         "   </div>",
         "   <p>규모 : " +
           (tMountain.amount ? `${tMountain.amount.toLocaleString("ko-KR")}톤` : `미등록`) +

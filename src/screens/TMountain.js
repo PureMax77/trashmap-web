@@ -20,6 +20,15 @@ const TMount_QUERY = gql`
       finish
       cleanCost
       dumpType
+      article {
+        id
+        url
+        ogPreview {
+          title
+          image
+          description
+        }
+      }
     }
   }
 `
@@ -59,20 +68,69 @@ const Bio = styled.div`
   background-color: ${(props) => props.theme.lightGrey};
   width: 100%;
   padding: 50px;
+  margin-bottom: 30px;
+`
+
+const Article = styled(Bio)`
+  background-color: ${(props) => props.theme.bgColor};
+  @media screen and (max-width: 768px) {
+    align-items: flex-start;
+  }
+  /* @media screen and (min-width: 420px) {
+    left: 10px;
+  } */
 `
 
 const InforTitle = styled.div`
   width: 100%;
   display: flex;
   align-items: flex-start;
+  margin-bottom: 50px;
   div {
     font-size: 18px;
     font-weight: 900;
     height: 28px;
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    /* margin-left: 10px; */
   }
+`
+
+const Preview = styled.a`
+  /* min-width: 300px; */
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid rgb(232, 232, 232);
+  border-radius: 20px;
+
+  @media screen and (min-width: 600px) {
+    width: 485px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+`
+const PreImage = styled.img`
+  width: 100%;
+`
+const PreContent = styled.ul`
+  padding: 10px 20px;
+  li {
+    :first-child {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    :last-child {
+      color: ${(props) => props.theme.darkGrey};
+    }
+  }
+`
+
+const NonData = styled.div`
+  font-size: 18px;
+  color: ${(props) => props.theme.lightRed};
+  width: 100%;
+  text-align: start;
 `
 
 const defaultImg =
@@ -88,7 +146,7 @@ function TMountain() {
     notifyOnNetworkStatusChange: true,
   })
 
-  // console.log(data)
+  console.log(data?.seeTMountain)
 
   return (
     <Wrapper>
@@ -106,6 +164,22 @@ function TMountain() {
           </InforTitle>
           {data?.seeTMountain && <InfoDiv mountain={data?.seeTMountain} />}
         </Bio>
+        <Article>
+          <InforTitle>
+            <div>관련 기사</div>
+          </InforTitle>
+          {data?.seeTMountain?.article[0] ? (
+            <Preview href={data?.seeTMountain?.article[0]?.url} target="_blank">
+              <PreImage src={data?.seeTMountain?.article[0]?.ogPreview?.image} />
+              <PreContent>
+                <li>{data?.seeTMountain?.article[0]?.ogPreview?.title}</li>
+                <li>{data?.seeTMountain?.article[0]?.ogPreview?.description}</li>
+              </PreContent>
+            </Preview>
+          ) : (
+            <NonData>미등록</NonData>
+          )}
+        </Article>
       </Header>
     </Wrapper>
   )
