@@ -7,6 +7,7 @@ import Button_accent from "../components/Button/Button_accent"
 import PageTitle from "../components/PageTitle"
 import { FatText } from "../components/shared"
 import InfoDiv from "../components/TMountain/InfoDiv"
+import PreArticle from "../components/PreArticle"
 
 const TMount_QUERY = gql`
   query seeTMountain($id: Int!) {
@@ -96,36 +97,6 @@ const InforTitle = styled.div`
   }
 `
 
-const Preview = styled.a`
-  /* min-width: 300px; */
-  cursor: pointer;
-  overflow: hidden;
-  border: 2px solid rgb(232, 232, 232);
-  border-radius: 20px;
-
-  @media screen and (min-width: 600px) {
-    width: 485px;
-  }
-  @media screen and (max-width: 600px) {
-    width: 100%;
-  }
-`
-const PreImage = styled.img`
-  width: 100%;
-`
-const PreContent = styled.ul`
-  padding: 10px 20px;
-  li {
-    :first-child {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    :last-child {
-      color: ${(props) => props.theme.darkGrey};
-    }
-  }
-`
-
 const NonData = styled.div`
   font-size: 18px;
   color: ${(props) => props.theme.lightRed};
@@ -146,7 +117,7 @@ function TMountain() {
     notifyOnNetworkStatusChange: true,
   })
 
-  console.log(data?.seeTMountain)
+  // console.log(data?.seeTMountain)
 
   return (
     <Wrapper>
@@ -169,13 +140,7 @@ function TMountain() {
             <div>관련 기사</div>
           </InforTitle>
           {data?.seeTMountain?.article[0] ? (
-            <Preview href={data?.seeTMountain?.article[0]?.url} target="_blank">
-              <PreImage src={data?.seeTMountain?.article[0]?.ogPreview?.image} />
-              <PreContent>
-                <li>{data?.seeTMountain?.article[0]?.ogPreview?.title}</li>
-                <li>{data?.seeTMountain?.article[0]?.ogPreview?.description}</li>
-              </PreContent>
-            </Preview>
+            <PreArticle article={data?.seeTMountain?.article[0]} />
           ) : (
             <NonData>미등록</NonData>
           )}

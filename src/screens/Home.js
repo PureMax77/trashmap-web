@@ -203,7 +203,7 @@ const Home = () => {
   // 지도 초기화
   useEffect(() => {
     map = new naver.maps.Map("map", mapOptions) // 지도 생성
-    const mapSize = new naver.maps.Size(window.innerWidth, window.innerHeight - 35)
+    const mapSize = new naver.maps.Size(window.innerWidth, window.innerHeight - 42)
     map.setSize(mapSize)
     // 맵 누르면 마커 정보창 꺼지게
     naver.maps.Event.addListener(map, "click", function () {

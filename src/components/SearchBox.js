@@ -8,7 +8,7 @@ const InfoBoxS = styled.div`
   position: absolute;
   height: 42px;
   z-index: 10000;
-  top: 35px;
+  top: 42px;
   padding: 10px 15px;
   border-radius: 4px;
   display: flex;

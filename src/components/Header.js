@@ -1,12 +1,12 @@
-import { useReactiveVar } from "@apollo/client"
-import { faCompass, faHome } from "@fortawesome/free-solid-svg-icons"
+// import { useReactiveVar } from "@apollo/client"
+import { faNewspaper } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { isLoggedInVar } from "../apollo"
-import useUser from "../hooks/useUser"
+// import { isLoggedInVar } from "../apollo"
+// import useUser from "../hooks/useUser"
 import routes from "../routes"
-import Avatar from "./Avatar"
+// import Avatar from "./Avatar"
 import { Logo } from "./Icons"
 
 const SHeader = styled.header`
@@ -17,7 +17,7 @@ const SHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 35px;
+  height: 42px;
 `
 
 const Wrapper = styled.div`
@@ -64,9 +64,24 @@ const Button = styled.span`
   font-weight: 600;
 `
 
+const ItemWrap = styled(Link)`
+  div {
+    @media screen and (min-width: 600px) {
+      :first-child {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      :nth-child(2) {
+        display: none;
+      }
+    }
+  }
+`
+
 function Header() {
-  const isLoggedIn = useReactiveVar(isLoggedInVar)
-  const { data } = useUser()
+  // const isLoggedIn = useReactiveVar(isLoggedInVar)
+  // const { data } = useUser()
   return (
     <SHeader>
       <Wrapper>
@@ -75,27 +90,27 @@ function Header() {
           <span>K-트래쉬맵</span>
         </MarkLink>
         <Column>
-          {/* {isLoggedIn ? (
-            <IconsContainer>
-              <Icon>
-                <Link to={routes.home}>
-                  <FontAwesomeIcon icon={faHome} size="lg" />
-                </Link>
-              </Icon>
-              <Icon>
-                <FontAwesomeIcon icon={faCompass} size="lg" />
-              </Icon>
-              <Icon>
-                <Link to={`/users/${data?.me?.username}`}>
-                  <Avatar url={data?.me?.avatar} />
-                </Link>
-              </Icon>
-            </IconsContainer>
-          ) : (
-            <Link to={routes.login}>
-              <Button>로그인</Button>
-            </Link>
-          )} */}
+          {/* {isLoggedIn ? ( */}
+          <IconsContainer>
+            <Icon>
+              <ItemWrap to={routes.articles}>
+                <div>
+                  <FontAwesomeIcon icon={faNewspaper} size="lg" />
+                </div>
+                <div>신문기사</div>
+              </ItemWrap>
+            </Icon>
+            {/* <Icon>
+              <Link to={`/users/${data?.me?.username}`}>
+                <Avatar url={data?.me?.avatar} />
+              </Link>
+            </Icon> */}
+          </IconsContainer>
+          {/*  ) : (
+             <Link to={routes.login}>
+               <Button>로그인</Button>
+             </Link>
+           )} */}
         </Column>
       </Wrapper>
     </SHeader>

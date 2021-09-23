@@ -12,6 +12,7 @@ import Introduce from "./screens/Introduce"
 import Login from "./screens/Login"
 import { HelmetProvider } from "react-helmet-async"
 import SingUp from "./screens/SignUp"
+import Articles from "./screens/Articles"
 
 function App() {
   const darkMode = useReactiveVar(darkModeVar)
@@ -30,6 +31,11 @@ function App() {
               <Route path={routes.tMountain}>
                 <Layout>
                   <TMountain />
+                </Layout>
+              </Route>
+              <Route path={routes.articles}>
+                <Layout>
+                  <Articles />
                 </Layout>
               </Route>
               <Route path={routes.introduce}>

@@ -5,7 +5,7 @@ import { openDonation, openNotice } from "../apollo"
 const InfoBoxS = styled.div`
   position: absolute;
   width: 220px;
-  top: 95px;
+  top: 102px;
   z-index: 10000;
   padding: 3px;
   border-radius: 4px;
