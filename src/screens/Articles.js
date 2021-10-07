@@ -44,7 +44,7 @@ function Articles() {
   return (
     <Wrapper minHeight={`${window.innerHeight - 100}px`}>
       {data?.seeArticles?.map((article, index) => (
-        <PreArticle key={index} article={article} marginBottom={"20px"} />
+        <PreArticle key={index} article={article} marginBottom={"50px"} />
       ))}
       {networkStatus === 1 ? (
         <Loading />

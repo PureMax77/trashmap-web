@@ -39,7 +39,7 @@ function Videos() {
   return (
     <Wrapper minHeight={`${window.innerHeight - 100}px`}>
       {data?.seeVideos?.map((video, index) => (
-        <PreVideo key={index} video={video} marginBottom={"20px"} />
+        <PreVideo key={index} video={video} marginBottom={"50px"} />
       ))}
       {networkStatus === 1 ? (
         <Loading />
