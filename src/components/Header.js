@@ -1,5 +1,6 @@
 // import { useReactiveVar } from "@apollo/client"
 import { faNewspaper } from "@fortawesome/free-regular-svg-icons"
+import { faVideo } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
@@ -92,6 +93,14 @@ function Header() {
         <Column>
           {/* {isLoggedIn ? ( */}
           <IconsContainer>
+            <Icon>
+              <ItemWrap to={routes.videos}>
+                <div>
+                  <FontAwesomeIcon icon={faVideo} size="lg" />
+                </div>
+                <div>영상</div>
+              </ItemWrap>
+            </Icon>
             <Icon>
               <ItemWrap to={routes.articles}>
                 <div>

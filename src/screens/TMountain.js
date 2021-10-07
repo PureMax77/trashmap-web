@@ -8,6 +8,7 @@ import PageTitle from "../components/PageTitle"
 import { FatText } from "../components/shared"
 import InfoDiv from "../components/TMountain/InfoDiv"
 import PreArticle from "../components/PreArticle"
+import PreVideo from "../components/PreVideo"
 
 const TMount_QUERY = gql`
   query seeTMountain($id: Int!) {
@@ -29,6 +30,10 @@ const TMount_QUERY = gql`
           image
           description
         }
+      }
+      video {
+        id
+        url
       }
     }
   }
@@ -69,7 +74,6 @@ const Bio = styled.div`
   background-color: ${(props) => props.theme.lightGrey};
   width: 100%;
   padding: 50px;
-  margin-bottom: 30px;
 `
 
 const Article = styled(Bio)`
@@ -80,6 +84,10 @@ const Article = styled(Bio)`
   /* @media screen and (min-width: 420px) {
     left: 10px;
   } */
+`
+
+const Video = styled(Article)`
+  background-color: ${(props) => props.theme.lightGrey};
 `
 
 const InforTitle = styled.div`
@@ -145,6 +153,16 @@ function TMountain() {
             <NonData>미등록</NonData>
           )}
         </Article>
+        <Video>
+          <InforTitle>
+            <div>관련 영상</div>
+          </InforTitle>
+          {data?.seeTMountain?.video[0] ? (
+            <PreVideo video={data?.seeTMountain?.video[0]} />
+          ) : (
+            <NonData>미등록</NonData>
+          )}
+        </Video>
       </Header>
     </Wrapper>
   )

@@ -13,6 +13,7 @@ import Login from "./screens/Login"
 import { HelmetProvider } from "react-helmet-async"
 import SingUp from "./screens/SignUp"
 import Articles from "./screens/Articles"
+import Videos from "./screens/Videos"
 
 function App() {
   const darkMode = useReactiveVar(darkModeVar)
@@ -36,6 +37,11 @@ function App() {
               <Route path={routes.articles}>
                 <Layout>
                   <Articles />
+                </Layout>
+              </Route>
+              <Route path={routes.videos}>
+                <Layout>
+                  <Videos />
                 </Layout>
               </Route>
               <Route path={routes.introduce}>

@@ -3,6 +3,7 @@ const routes = {
   tMountain: "/tmountain/:id",
   introduce: "/introduce",
   articles: "/articles",
+  videos: "/videos",
   test: "/test",
 }
 

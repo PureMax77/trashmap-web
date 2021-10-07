@@ -66,6 +66,7 @@ export const client = new ApolloClient({
       Query: {
         fields: {
           seeArticles: offsetLimitPagination(),
+          seeVideos: offsetLimitPagination(),
         },
       },
     },
