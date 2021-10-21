@@ -1,8 +1,11 @@
+import { useReactiveVar } from "@apollo/client"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { closeNotice } from "../apollo"
+import { checkDisplayVar, closeNotice, headerHeight, popNotice } from "../apollo"
 import routes from "../routes"
 import PopupClose from "./Button/PopupClose"
+import CheckBox from "./CheckBox"
 
 const BlackBack = styled.div`
   position: absolute;
@@ -11,7 +14,7 @@ const BlackBack = styled.div`
   justify-content: center;
   align-items: center;
   width: ${(props) => props.theme.windowWidth};
-  height: ${(props) => props.theme.windowHeight};
+  height: ${(props) => props.blackHeight};
   background-color: black;
   opacity: 50%;
 `
@@ -64,6 +67,13 @@ const Report = styled.div`
   border: 1px solid rgb(232, 232, 232);
   margin-top: 10px;
   line-height: 20px;
+  :nth-child(3) {
+    p {
+      margin-top: 5px;
+      color: ${(props) => props.theme.lightRed};
+      font-size: 17px;
+    }
+  }
 `
 
 const ItemOrder = styled.ol`
@@ -74,17 +84,43 @@ const ALink = styled(Link)`
   width: 100%;
 `
 
+const NotSee = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+`
+
 const popWidth = 320
-const popHeight = 280
-const popTop = window.innerHeight / 2 - popWidth / 2 + 45
+const popHeight = 420
+const popTop = window.innerHeight / 2 - popHeight / 2 + headerHeight
 const popLeft = window.innerWidth / 2 - popWidth / 2
+const blackHeight = window.innerHeight - headerHeight
 const notice1 =
+  "본 사이트는 실시간으로 업데이트되지 않습니다. 처리 미완료가 실제로는 처리가 완료되어 쓰레기산이 사라졌을 수도 있습니다. "
+const notice2 =
   "전국에 400개 이상의 쓰레기산이 존재합니다. 하지만 현재 등록된 쓰레기산의 정보가 턱없이 부족한 현실입니다. 여러분의 적극적인 참여와 제보가 필요합니다."
 
 function Notice() {
+  const checkDisplay = useReactiveVar(checkDisplayVar)
+
+  const [weekPop, setWeekPop] = useState(false)
+
+  const weekOnChange = () => {
+    const nowTime = new Date().getTime()
+    if (weekPop) {
+      setWeekPop(false)
+      localStorage.removeItem(popNotice)
+    } else {
+      setWeekPop(true)
+      localStorage.setItem(popNotice, nowTime)
+    }
+  }
+
   return (
     <>
-      <BlackBack />
+      <BlackBack blackHeight={`${blackHeight}px`} />
       <CustomPopup
         popWidth={`${popWidth}px`}
         popHeight={`${popHeight}px`}
@@ -96,7 +132,11 @@ function Notice() {
           <ALink to={routes.introduce}>
             <Intro onClick={() => closeNotice()}>K-트래쉬맵 소개</Intro>
           </ALink>
-          <Report>{notice1}</Report>
+          <Report>
+            {notice1}
+            <p>반드시 참고 용도로만 사용하세요.</p>
+          </Report>
+          <Report>{notice2}</Report>
           <Report>
             <p>쓰레기산 제보, 피드백&기타 문의</p>
             <ItemOrder>
@@ -104,6 +144,12 @@ function Notice() {
               <li>우측 하단 채널톡 문의</li>
             </ItemOrder>
           </Report>
+          {checkDisplay && (
+            <NotSee>
+              <CheckBox checked={weekPop} onChange={() => weekOnChange()} margin={"0 10px 0 0"} />{" "}
+              7일 동안 보지 않기
+            </NotSee>
+          )}
         </PBody>
       </CustomPopup>
     </>

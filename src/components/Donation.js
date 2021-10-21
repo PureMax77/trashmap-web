@@ -1,7 +1,7 @@
 import { faCoffee } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
-import { closeDonation } from "../apollo"
+import { closeDonation, headerHeight } from "../apollo"
 import PopupClose from "./Button/PopupClose"
 
 const BlackBack = styled.div`
@@ -11,7 +11,7 @@ const BlackBack = styled.div`
   justify-content: center;
   align-items: center;
   width: ${(props) => props.theme.windowWidth};
-  height: ${(props) => props.theme.windowHeight};
+  height: ${(props) => props.blackHeight};
   background-color: black;
   opacity: 50%;
 `
@@ -71,14 +71,15 @@ const RedP = styled.p`
 
 const popWidth = 320
 const popHeight = 200
-const popTop = window.innerHeight / 2 - popWidth / 2 + 45
+const popTop = window.innerHeight / 2 - popWidth / 2 + headerHeight
 const popLeft = window.innerWidth / 2 - popWidth / 2
 const DonationURL = "https://toon.at/donate/637659719549166046"
+const blackHeight = window.innerHeight - headerHeight
 
 function Donation() {
   return (
     <>
-      <BlackBack />
+      <BlackBack blackHeight={`${blackHeight}px`} />
       <CustomPopup
         popWidth={`${popWidth}px`}
         popHeight={`${popHeight}px`}
@@ -91,7 +92,7 @@ function Donation() {
           <p>지원해주신 후원금은 소중히 사용하겠습니다</p>
           <RedP>
             (금액 충전 후 후원하기를 다시 한번 눌러주셔야 됩니다. 이것 때문에 충전만 하고 후원되지
-            않는 경우가 다수 발생하고 있습니다.)
+            않는 경우가 발생하고 있습니다.)
           </RedP>
           <DonationA href={DonationURL} target="_blank">
             <FontAwesomeIcon icon={faCoffee} size="lg" />

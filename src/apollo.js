@@ -4,6 +4,7 @@ import { offsetLimitPagination } from "@apollo/client/utilities"
 
 const TOKEN = "TOKEN"
 const DARK_MODE = "DARK_MODE"
+export const headerHeight = 42
 
 // 로그인 상태 변수
 export const isLoggedInVar = makeVar(Boolean(localStorage.getItem(TOKEN)))
@@ -25,14 +26,31 @@ export const disableDarkMode = () => {
   localStorage.removeItem(DARK_MODE)
   darkModeVar(false)
 }
+
+// 공지 팝업 처음 화면 띄울지 판단
+export const popNotice = "NOTICE"
+let firstPopVar = true
+const popNoticeTime = localStorage.getItem(popNotice)
+if (popNoticeTime) {
+  // 로컬에 NOTICE 데이터 있으면 기간 체크후 팝업 띄울지 결정
+  const nowTime = new Date().getTime()
+  const isEffect = nowTime - popNoticeTime < 604800000
+  if (isEffect) {
+    firstPopVar = false
+  }
+}
+// 공지 팝업 일주일 안보기 Display 변수
+export const checkDisplayVar = makeVar(true)
 // 공지 팝업 변수
-export const noticePopVar = makeVar(false)
+export const noticePopVar = makeVar(firstPopVar)
 export const openNotice = () => {
   noticePopVar(true)
+  checkDisplayVar(false)
 }
 export const closeNotice = () => {
   noticePopVar(false)
 }
+
 // 후원 팝업 변수
 export const donationPopVar = makeVar(false)
 export const openDonation = () => {
