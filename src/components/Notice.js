@@ -93,7 +93,7 @@ const NotSee = styled.div`
 `
 
 const popWidth = 320
-const popHeight = 420
+const popHeight = 440
 const popTop = window.innerHeight / 2 - popHeight / 2 + headerHeight
 const popLeft = window.innerWidth / 2 - popWidth / 2
 const blackHeight = window.innerHeight - headerHeight
