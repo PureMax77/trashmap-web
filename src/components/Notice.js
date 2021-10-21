@@ -98,7 +98,7 @@ const popTop = window.innerHeight / 2 - popHeight / 2 + headerHeight
 const popLeft = window.innerWidth / 2 - popWidth / 2
 const blackHeight = window.innerHeight - headerHeight
 const notice1 =
-  "본 사이트는 실시간으로 업데이트되지 않습니다. 처리 미완료가 실제로는 처리가 완료되어 쓰레기산이 사라졌을 수도 있습니다. "
+  "본 사이트는 실시간으로 업데이트되지 않습니다. 처리 미완료가 실제로는 처리가 완료되어 쓰레기산이 없을 수도 있습니다. "
 const notice2 =
   "전국에 400개 이상의 쓰레기산이 존재합니다. 하지만 현재 등록된 쓰레기산의 정보가 턱없이 부족한 현실입니다. 여러분의 적극적인 참여와 제보가 필요합니다."
 
