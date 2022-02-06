@@ -33,7 +33,7 @@ const TMounts_QUERY = gql`
 //   new naver.maps.LatLng(37.7010174173061, 127.18379493229875)
 // )
 
-// 임시 초기 쓰레기산
+// 초기 접속시 쓰레기산 위치
 const tmpMountain = new naver.maps.LatLng(36.841805, 127.321792)
 
 // 지도 초기 생성 옵션
@@ -111,6 +111,8 @@ const Home = () => {
       // 마커에 이벤트 등록
       naver.maps.Event.addListener(marker, "click", function (e) {
         // console.log(infowindow, infowindow.getMap())
+
+        // 클릭한 마커(산)의 정보창이 켜있다면
         if (infowindow.getMap()) {
           infowindow.close()
           infoViews[index].display = false

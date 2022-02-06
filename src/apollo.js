@@ -79,10 +79,12 @@ export const client = new ApolloClient({
   cache: new InMemoryCache({
     typePolicies: {
       User: {
+        // 캐시에서 user의 id 대신 username을 식별코드로 사용가능
         keyFields: (obj) => `User:${obj.username}`,
       },
       Query: {
         fields: {
+          // 기존 데이터를 제외한 나머지 데이터 불러와 Query 최적화
           seeArticles: offsetLimitPagination(),
           seeVideos: offsetLimitPagination(),
         },
