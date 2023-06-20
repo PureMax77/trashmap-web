@@ -133,8 +133,9 @@ function Notice() {
             <Intro onClick={() => closeNotice()}>K-트래쉬맵 소개</Intro>
           </ALink>
           <Report>
-            {notice1}
-            <p>반드시 참고 용도로만 사용하세요.</p>
+            {/* {notice1} */}
+            {/* <p>반드시 참고 용도로만 사용하세요.</p> */}
+            <p>개인적인 사정으로 데이터 제공이 중지되었습니다.</p>
           </Report>
           <Report>{notice2}</Report>
           <Report>

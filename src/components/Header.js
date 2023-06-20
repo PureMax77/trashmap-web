@@ -93,7 +93,7 @@ function Header() {
         <Column>
           {/* {isLoggedIn ? ( */}
           <IconsContainer>
-            <Icon>
+            {/* <Icon>
               <ItemWrap to={routes.videos}>
                 <div>
                   <FontAwesomeIcon icon={faVideo} size="lg" />
@@ -108,7 +108,7 @@ function Header() {
                 </div>
                 <div>신문기사</div>
               </ItemWrap>
-            </Icon>
+            </Icon> */}
             {/* <Icon>
               <Link to={`/users/${data?.me?.username}`}>
                 <Avatar url={data?.me?.avatar} />
