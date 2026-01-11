@@ -51,6 +51,7 @@ let map // 지도 넣을 곳
 let marker // 현재위치 마커
 const infoViews = [] // 쓰레기산 마커 모음
 let searchMarker // 검색 마커
+let ps // 카카오 Places 서비스
 
 const Home = () => {
   const noticePop = useReactiveVar(noticePopVar)
@@ -75,8 +76,8 @@ const Home = () => {
           : null,
         "   </div>",
         "   <p>규모 : " +
-          (tMountain.amount ? `${tMountain.amount.toLocaleString("ko-KR")}톤` : `미등록`) +
-          "   </p>",
+        (tMountain.amount ? `${tMountain.amount.toLocaleString("ko-KR")}톤` : `미등록`) +
+        "   </p>",
         "   <p>처리 여부 : " + (tMountain.finish ? "완료" : "미완료") + "</p>",
         // "   <p>(처리를 지지합니다 기다려주세요...)</p>",
         '   <div style="margin:20px 0 5px 0">',
@@ -171,17 +172,22 @@ const Home = () => {
   }
 
   // 검색 이동
-  let ps = new kakao.maps.services.Places()
-
   const SearchBtn = (e) => {
     if (e.keyCode === 13) {
+      if (!window.kakao || !window.kakao.maps) {
+        alert("카카오맵 API가 로드되지 않았습니다.")
+        return
+      }
+      if (!ps) {
+        ps = new window.kakao.maps.services.Places()
+      }
       let content = e.target.value
       ps.keywordSearch(content, placeSearchCB)
     }
   }
 
   const placeSearchCB = (data, status) => {
-    if ((status = kakao.maps.services.Status.OK)) {
+    if (status === window.kakao.maps.services.Status.OK) {
       let target = data[0]
       const lat = target.y
       const lng = target.x
@@ -215,6 +221,17 @@ const Home = () => {
         infoViews[viewIndex].display = false
       }
     })
+
+    // 카카오맵 API 로드 확인 및 초기화
+    const initKakao = () => {
+      if (window.kakao && window.kakao.maps && window.kakao.maps.services) {
+        ps = new window.kakao.maps.services.Places()
+      } else {
+        // 카카오맵이 아직 로드되지 않았다면 잠시 후 다시 시도
+        setTimeout(initKakao, 100)
+      }
+    }
+    initKakao()
   }, [])
 
   useEffect(() => {
